@@ -16,5 +16,14 @@
     <div id="text">
 
     </div>
+
+    <script>
+        let textField = document.getElementById("text");
+
+        browser.runtime.onMessage.addListener((data)=>{
+            text.innerText = data;
+        });
+
+    </script>
 </body>
 </html>

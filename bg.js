@@ -32,7 +32,7 @@ browser.contextMenus.onClicked.addListener((info,tab)=>{
         if (selectedText.length > 0){
             selectedText = (parseFloat(selectedText) / data.rates.USD);
             console.log(selectedText);
-            msg = "₪" + selectedText.toString() ;
+            msg = "₪" + selectedText.toFixed(2) ;
 
         }else{
             msg = "error"
@@ -45,7 +45,22 @@ browser.contextMenus.onClicked.addListener((info,tab)=>{
 
 
     } else if (info.menuItemId == "euro_to_ils" && !displayingPopup){
-        browser.browserAction.setBadgeText({ text: "eur", tabId: tab.id});
+        var msg = "";
+        var selectedText = info.selectionText.replace(/[^\d.-]/g, '');
+        if (selectedText.length > 0) {
+            selectedText = (parseFloat(selectedText) / data.rates.EUR);
+            console.log(selectedText);
+            msg = "₪" + selectedText.toFixed(2);
+
+        } else {
+            msg = "error"
+        }
+
+
+        browser.tabs.sendMessage(tab.id, msg).then(() => {
+            displayingPopup = true;
+        });
+
     }
 });
 
