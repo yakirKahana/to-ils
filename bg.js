@@ -24,44 +24,39 @@ browser.contextMenus.create({
 
 });
 
+function convertNumber(usd,info){
+    //if usd == false then convert euro to shekel
+    let operation = (usd ? data.rates.USD : data.rates.EUR) ;
+    console.log(operation);
+    let msg = "";
+    let selectedText = info.selectionText.replace(/[^\d.-]/g, '');
+    if (selectedText.length > 0) {
+        selectedText = (parseFloat(selectedText) / operation);
+        console.log(selectedText);
+        msg = "₪" + selectedText.toFixed(2);
+
+    } else {
+        msg = "error"
+    }
+
+    return msg;
+
+
+}
+
 
 browser.contextMenus.onClicked.addListener((info,tab)=>{
+    let msg;
     if (info.menuItemId == "usd_to_ils" && !displayingPopup){
-        var msg = "";
-        var selectedText = info.selectionText.replace(/[^\d.-]/g, '');
-        if (selectedText.length > 0){
-            selectedText = (parseFloat(selectedText) / data.rates.USD);
-            console.log(selectedText);
-            msg = "₪" + selectedText.toFixed(2) ;
-
-        }else{
-            msg = "error"
-        }
-
-
-        browser.tabs.sendMessage(tab.id,msg).then(()=>{
-            displayingPopup = true;
-        });
-
-
+        msg = convertNumber(true,info);
     } else if (info.menuItemId == "euro_to_ils" && !displayingPopup){
-        var msg = "";
-        var selectedText = info.selectionText.replace(/[^\d.-]/g, '');
-        if (selectedText.length > 0) {
-            selectedText = (parseFloat(selectedText) / data.rates.EUR);
-            console.log(selectedText);
-            msg = "₪" + selectedText.toFixed(2);
-
-        } else {
-            msg = "error"
-        }
-
-
-        browser.tabs.sendMessage(tab.id, msg).then(() => {
-            displayingPopup = true;
-        });
-
+        msg = convertNumber(false,info);
     }
+    console.log(msg);
+    browser.tabs.sendMessage(tab.id, msg).then(() => {
+        displayingPopup = true;
+    });
+
 });
 
 
