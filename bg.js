@@ -27,13 +27,13 @@ browser.contextMenus.create({
 function convertNumber(usd,info){
     //if usd == false then convert euro to shekel
     let operation = (usd ? data.rates.USD : data.rates.EUR) ;
-    console.log(operation);
+
     let msg = "";
     let selectedText = info.selectionText.replace(/[^\d.-]/g, '');
     if (selectedText.length > 0) {
-        selectedText = (parseFloat(selectedText) / operation);
-        console.log(selectedText);
-        msg = "₪" + selectedText.toFixed(2);
+        converted = (parseFloat(selectedText) / operation);
+
+        msg = "₪" + converted.toFixed(2);
 
     } else {
         msg = "error"

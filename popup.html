@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>לשקל</title>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #popup{
+            padding:10px;
+        }
+
+        h3{
+            font-size: .9rem;
+        }
+
+
+
+        #update{
+            background-color:#1E88E5;
+            transition: background-color 0.3s;
+            color:#fff;
+            padding:10px 16px;
+            border:0px;
+            border-radius: 2px;
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px, rgba(0, 0, 0, 0.2) 0px 1px 5px 0px
+        }
+        #update:hover{
+           background-color:#42A5F5; 
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <div id="popup">
+        <h3>שער מט"ח מעודכן לתאריך:</h3>
+        <p id="date">31.05.1994</p>
+        <button id="update">עדכן</button>
+    </div>
+</body>
+</html>
