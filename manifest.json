@@ -5,7 +5,8 @@
 
     "permissions": [
         "*://*/*",
-        "contextMenus"
+        "contextMenus",
+        "storage"
 
     ],
 
@@ -31,7 +32,7 @@
 
     
     "background":{
-        "scripts":["bg.js"]
+        "page":"bg.html"
     }
 
 }
