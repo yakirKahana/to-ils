@@ -3,7 +3,7 @@
 let displayingPopup = false;
 
 
-fetch('https://api.exchangeratesapi.io/latest?symbols=USD,EUR&base=ILS').then((response)=>{
+fetch('https://api.ratesapi.io/api/latest?symbols=USD,EUR&base=ILS').then((response)=>{
         return response.json()}).then((json)=>{
             browser.storage.local.clear().then(()=>{
                 browser.storage.local.set(json);

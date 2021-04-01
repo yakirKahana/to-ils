@@ -12,7 +12,7 @@ updateUI();
 
 
 updateBtn.addEventListener('click',()=>{
-    fetch('https://api.exchangeratesapi.io/latest?symbols=USD,EUR&base=ILS').then((response) => {
+    fetch('https://api.ratesapi.io/api/latest?symbols=USD,EUR&base=ILS').then((response) => {
         return response.json()
     }).then((json) => {
         data = json;
