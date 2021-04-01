@@ -25,7 +25,7 @@ __שימו לב__
 שערי המט"ח מתעדכנים אוטומטית כאשר אתם מפעילים את הדפדפן
 
 שערי המט"ח באדיבות
-[exchangeratesapi.io](https://exchangeratesapi.io/)
+[ratesapi.io](https://ratesapi.io/)
 ___
 ___
 # To Shekel
@@ -55,4 +55,4 @@ the currency rates come from external source and it's accuracy is NOT guaranteed
 the currency rates get updated automaticlly when you start your browser
 
 currency rates courtesy of -
-[exchangeratesapi.io](https://exchangeratesapi.io/)
+[ratesapi.io](https://ratesapi.io/)
