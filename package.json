@@ -3,9 +3,9 @@
   "version": "1.0.1",
   "description": "A Firefox addon to convert from US dollars and Euro to Israeli Shekels.",
   "main": "bg.js",
-  "private":"true",
+  "private": "true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint ./*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/yakirKahana/to-ils/issues"
   },
-  "homepage": "https://github.com/yakirKahana/to-ils#readme"
+  "homepage": "https://github.com/yakirKahana/to-ils#readme",
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  }
 }
