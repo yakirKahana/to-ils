@@ -1,0 +1,20 @@
+{
+  "name": "to-ils",
+  "version": "1.0.1",
+  "description": "A Firefox addon to convert from US dollars and Euro to Israeli Shekels.",
+  "main": "bg.js",
+  "private":"true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yakirKahana/to-ils.git"
+  },
+  "author": "Yakir K",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/yakirKahana/to-ils/issues"
+  },
+  "homepage": "https://github.com/yakirKahana/to-ils#readme"
+}
