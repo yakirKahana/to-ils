@@ -1,11 +1,5 @@
 let displayingPopup = false;
 
-// fetch('https://api.ratesapi.io/api/latest?symbols=USD,EUR&base=ILS').then((response) => response.json()).then((json) => {
-//   browser.storage.local.clear().then(() => {
-//     browser.storage.local.set(json);
-//   });
-// });
-
 let rates = {
   USD: 0.0,
   ILS: 0.0,
@@ -13,7 +7,6 @@ let rates = {
 };
 
 function mapAttrsToObj(data) {
-  console.log('data', data);
   const array = Array.prototype.slice.call(data);
   array.forEach((cube) => {
     currency = cube.getAttribute('currency');
@@ -59,11 +52,18 @@ function getRates() {
       return RecivedRates;
     });
 }
+// Get rates
 getRates()
+  // convert base to ils
   .then((EuroBasedRates) => convertBaseToShekel(EuroBasedRates))
+  // save results to rates && clear browser storage
   .then((convertedRates) => {
     rates = convertedRates;
-    console.log(convertedRates);
+    return browser.storage.local.clear();
+  })
+  // set browser storage to rates
+  .then(() => {
+    browser.storage.local.set(rates);
   });
 
 browser.contextMenus.create({
@@ -82,8 +82,8 @@ browser.contextMenus.create({
 
 function convertNumber(usd, info, tab) {
   // if usd == false then convert euro to shekel
-  browser.storage.local.get('rates').then((res) => {
-    const operation = (usd ? res.rates.USD : res.rates.EUR);
+  browser.storage.local.get((usd ? 'USD' : 'EUR')).then((res) => {
+    const operation = (usd ? res.USD : res.EUR);
     const selectedText = info.selectionText.replace(/[^\d.-]/g, '');
     if (selectedText.length > 0) {
       converted = (parseFloat(selectedText) / operation);
