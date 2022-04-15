@@ -80,10 +80,25 @@ browser.contextMenus.create({
 
 });
 
-function convertNumber(usd, info, tab) {
-  // if usd == false then convert euro to shekel
-  browser.storage.local.get((usd ? 'USD' : 'EUR')).then((res) => {
-    const operation = (usd ? res.USD : res.EUR);
+browser.contextMenus.create({
+  id: 'gbp_to_ils',
+  title: '£ → ₪',
+  contexts: ['selection'],
+
+});
+
+function convertNumber(currency, info, tab) {
+  browser.storage.local.get(currency).then((res) => {
+    let operation;
+
+    if (currency === 'USD') {
+      operation = res.USD;
+    } else if (currency === 'EUR') {
+      operation = res.EUR;
+    } else {
+      operation = res.GBP;
+    }
+
     const selectedText = info.selectionText.replace(/[^\d.-]/g, '');
     if (selectedText.length > 0) {
       converted = (parseFloat(selectedText) / operation);
@@ -100,9 +115,11 @@ function convertNumber(usd, info, tab) {
 
 browser.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === 'usd_to_ils' && !displayingPopup) {
-    convertNumber(true, info, tab);
+    convertNumber('USD', info, tab);
   } else if (info.menuItemId === 'euro_to_ils' && !displayingPopup) {
-    convertNumber(false, info, tab);
+    convertNumber('EUR', info, tab);
+  } else if (info.menuItemId === 'gbp_to_ils' && !displayingPopup) {
+    convertNumber('GBP', info, tab);
   }
 });
 
