@@ -52,19 +52,22 @@ function getRates() {
       return RecivedRates;
     });
 }
-// Get rates
-getRates()
+
+function updateRates() {
+  // Get rates
+  return getRates()
   // convert base to ils
-  .then((EuroBasedRates) => convertBaseToShekel(EuroBasedRates))
+    .then((EuroBasedRates) => convertBaseToShekel(EuroBasedRates))
   // save results to rates && clear browser storage
-  .then((convertedRates) => {
-    rates = convertedRates;
-    return browser.storage.local.clear();
-  })
+    .then((convertedRates) => {
+      rates = convertedRates;
+      return browser.storage.local.clear();
+    })
   // set browser storage to rates
-  .then(() => {
-    browser.storage.local.set(rates);
-  });
+    .then(() => browser.storage.local.set(rates));
+}
+
+updateRates();
 
 browser.contextMenus.create({
   id: 'usd_to_ils',
@@ -126,5 +129,7 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
 browser.runtime.onMessage.addListener((msg) => {
   if (msg.done) {
     displayingPopup = false;
+  } else if (msg.update) {
+    updateRates();
   }
 });
