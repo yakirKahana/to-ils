@@ -1,6 +1,6 @@
 {
   "name": "to-ils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Firefox addon to convert from US dollars and Euro to Israeli Shekels.",
   "main": "bg.js",
   "private": "true",
